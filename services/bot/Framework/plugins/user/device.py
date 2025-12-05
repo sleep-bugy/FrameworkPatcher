@@ -39,6 +39,7 @@ async def handle_text_input(bot: Client, message: Message):
         codename = message.text.strip().lower()
 
         # Validate codename
+        if not is_codename_valid(codename):
             # Codename invalid, but offer manual override
             retry_count = user_states[user_id].get("codename_retry_count", 0)
             retry_count += 1
