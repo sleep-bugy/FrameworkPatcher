@@ -59,12 +59,19 @@ The bot needs to run on a server that stays online 24/7.
     cd FrameworkPatcher
     ```
 
-2.  **Install Dependencies:**
+2.  **Set up Virtual Environment (Recommended):**
+    It's best to use a virtual environment to avoid conflicts with system packages.
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+3.  **Install Dependencies:**
     ```bash
     pip3 install -r services/bot/requirements.txt
     ```
 
-3.  **Configure Environment:**
+4.  **Configure Environment:**
     Create a `.env` file in `services/bot/.env` (or export variables in your shell):
     ```bash
     cp services/bot/.env.example services/bot/.env
@@ -75,7 +82,7 @@ The bot needs to run on a server that stays online 24/7.
     *   `BOT_TOKEN` (from @BotFather)
     *   `ALLOWED_USER_IDS` (Your Telegram ID)
 
-4.  **Run the Bot:**
+5.  **Run the Bot:**
     *   **Method A: Direct (for testing)**
         ```bash
         python3 -m services.bot.Framework
@@ -96,12 +103,14 @@ The bot needs to run on a server that stays online 24/7.
         [Service]
         User=root
         WorkingDirectory=/path/to/FrameworkPatcher
-        ExecStart=/usr/bin/python3 -m services.bot.Framework
+        ExecStart=/path/to/FrameworkPatcher/venv/bin/python3 -m services.bot.Framework
         Restart=always
 
         [Install]
         WantedBy=multi-user.target
         ```
+        *Note: Make sure ExecStart points to the python inside your venv.*
+        
         Enable and start:
         ```bash
         sudo systemctl enable frameworkbot
