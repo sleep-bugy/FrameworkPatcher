@@ -39,31 +39,21 @@ async def handle_text_input(bot: Client, message: Message):
         codename = message.text.strip().lower()
 
         # Validate codename
-        if not is_codename_valid(codename):
+            # Codename invalid, but offer manual override
             retry_count = user_states[user_id].get("codename_retry_count", 0)
             retry_count += 1
             user_states[user_id]["codename_retry_count"] = retry_count
 
-            if retry_count >= 3:
-                await message.reply_text(
-                    "❌ Maximum retry attempts reached. Operation cancelled.\n\n"
-                    "Please use /start_patch to try again.",
-                    quote=True
-                )
-                user_states.pop(user_id, None)
-                return
-
-            # Get similar codenames for suggestions
-            similar = get_similar_codenames(codename)
-            suggestion_text = ""
-            if similar:
-                suggestion_text = f"\n\n💡 Did you mean one of these?\n" + "\n".join([f"• `{c}`" for c in similar[:5]])
+            buttons = [
+                [InlineKeyboardButton(f"⚠️ Use '{codename}' anyway", callback_data=f"force_codename_{codename}")],
+                [InlineKeyboardButton("🔄 Try Again", callback_data="reselect_codename")]
+            ]
 
             await message.reply_text(
-                f"❌ **Invalid codename:** `{codename}`\n\n"
-                f"Attempt {retry_count}/3\n"
-                f"{suggestion_text}\n\n"
-                f"💡 _Tip: You can search by device name (e.g., 'Redmi Note 11')._",
+                f"❌ **Device not found:** `{codename}`\n\n"
+                f"I couldn't find this device in the database.\n"
+                f"If you are sure this is correct, you can force use it.",
+                reply_markup=InlineKeyboardMarkup(buttons),
                 quote=True
             )
             return
@@ -369,6 +359,33 @@ async def handle_text_input(bot: Client, message: Message):
     else:
         await message.reply_text("I'm currently expecting files or specific text input. Use /cancel to restart.",
                                  quote=True)
+
+
+@bot.on_callback_query(filters.regex(r"^force_codename_(.+)$"))
+async def force_codename_handler(bot: Client, query: CallbackQuery):
+    """Handles forced usage of an unknown codename."""
+    user_id = query.from_user.id
+    codename = query.data.split("_", 2)[2]
+
+    LOGGER.info(f"Force codename callback received: user_id={user_id}, codename={codename}")
+
+    if user_id not in user_states:
+        await query.answer("Session expired. Please use /start_patch to begin again.", show_alert=True)
+        return
+
+    # Store forced codename
+    user_states[user_id]["device_codename"] = codename
+    user_states[user_id]["device_name"] = f"Unknown Device ({codename})"
+    
+    # Skip to manual ROM version entry
+    user_states[user_id]["state"] = STATE_WAITING_FOR_MANUAL_ROM_VERSION
+
+    await query.message.edit_text(
+        f"⚠️ **Forced Device:** `{codename}`\n\n"
+        f"Since this device is not in our database, you must enter the ROM version manually.\n\n"
+        f"Please enter your ROM version (e.g., `OS1.0.5.0.UNQMIXM`)."
+    )
+    await query.answer("Device set manually")
 
 
 @bot.on_callback_query(filters.regex(r"^ver_(manual)$"))
