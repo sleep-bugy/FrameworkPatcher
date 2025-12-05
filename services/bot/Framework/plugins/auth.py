@@ -22,10 +22,4 @@ async def auth_check(client: Client, message: Message):
         f"Your ID: `{user_id}`"
     )
     message.stop_propagation()
-        LOGGER.warning(f"Unauthorized access attempt from user ID: {user_id} ({message.from_user.first_name})")
-        await message.reply_text(
-            "⛔ **Access Denied**\n\n"
-            "You are not authorized to use this bot.\n"
-            f"Your ID: `{user_id}`"
-        )
-        message.stop_propagation()
+
