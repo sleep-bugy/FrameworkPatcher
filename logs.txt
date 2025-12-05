@@ -1,13 +1,20 @@
-[05-Dec-25 11:32:13 - INFO] - services.bot.Framework.helpers.logger - Starting Framework Patcher Bot...
-[05-Dec-25 11:32:21 - INFO] - services.bot.Framework.helpers.logger - Initializing device data provider...
-[05-Dec-25 11:32:21 - INFO] - services.bot.Framework.helpers.logger - Initializing device and software data...
-[05-Dec-25 11:32:23 - INFO] - services.bot.Framework.helpers.logger - Loaded 3302 devices.
-[05-Dec-25 11:32:23 - INFO] - services.bot.Framework.helpers.logger - Loaded 214 firmware codenames.
-[05-Dec-25 11:32:23 - INFO] - services.bot.Framework.helpers.logger - Loaded 246 MIUI codenames.
-[05-Dec-25 11:32:24 - INFO] - services.bot.Framework.helpers.logger - Loaded 31 vendor codenames.
-[05-Dec-25 11:32:25 - INFO] - services.bot.Framework.helpers.logger - Loaded firmware data for 213 devices.
-[05-Dec-25 11:32:28 - INFO] - services.bot.Framework.helpers.logger - Loaded MIUI ROMs data for 303 devices.
-[05-Dec-25 11:32:28 - INFO] - services.bot.Framework.helpers.logger - Data initialization complete!
-[05-Dec-25 11:32:28 - INFO] - services.bot.Framework.helpers.logger - Sleep Framework (@framework_sleep_bot) [ID: 7833804388]
-[05-Dec-25 11:32:44 - ERROR] - services.bot.Framework.helpers.logger - An unexpected error occurred while fetching PixelDrain info for peridot: HTTPStatusError: Client error '404 Not Found' for url 'https://pixeldrain.com/api/file/peridot/info'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[05-Dec-25 11:41:26 - INFO] - services.bot.Framework.helpers.logger - Starting Framework Patcher Bot...
+[05-Dec-25 11:41:26 - INFO] - services.bot.Framework.helpers.logger - Initializing device data provider...
+[05-Dec-25 11:41:26 - INFO] - services.bot.Framework.helpers.logger - Initializing device and software data...
+[05-Dec-25 11:41:27 - INFO] - services.bot.Framework.helpers.logger - Loaded 3302 devices.
+[05-Dec-25 11:41:27 - INFO] - services.bot.Framework.helpers.logger - Loaded 214 firmware codenames.
+[05-Dec-25 11:41:28 - INFO] - services.bot.Framework.helpers.logger - Loaded 246 MIUI codenames.
+[05-Dec-25 11:41:28 - INFO] - services.bot.Framework.helpers.logger - Loaded 31 vendor codenames.
+[05-Dec-25 11:41:29 - INFO] - services.bot.Framework.helpers.logger - Loaded firmware data for 213 devices.
+[05-Dec-25 11:41:32 - INFO] - services.bot.Framework.helpers.logger - Loaded MIUI ROMs data for 303 devices.
+[05-Dec-25 11:41:32 - INFO] - services.bot.Framework.helpers.logger - Data initialization complete!
+[05-Dec-25 11:41:32 - INFO] - services.bot.Framework.helpers.logger - Sleep Framework (@framework_sleep_bot) [ID: 7833804388]
+[05-Dec-25 11:48:55 - WARNING] - services.bot.Framework.helpers.logger - Unauthorized access attempt from user ID: 7916081808 (Im Human)
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Version selection callback received: user_id=5354946036, data=ver_1
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - User 5354946036 current state: 5
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Parsed version data: 1
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Processing version selection: index=1
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Available ROMs count: 15
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Selected ROM: {'android': '15.0', 'branch': 'Stable', 'codename': 'peridot', 'date': datetime.date(2025, 11, 15), 'link': 'https://bigota.d.miui.com/OS2.0.207.0.VNPCNXM/peridot-ota_full-OS2.0.207.0.VNPCNXM-user-15.0-3934a2bbd6.zip', 'md5': '3934a2bbd658e103c62e75b24c3fbf7c', 'method': 'Recovery', 'name': 'Redmi Turbo 3 China', 'size': '6.9 GB', 'version': 'OS2.0.207.0.VNPCNXM'}
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Version: OS2.0.207.0.VNPCNXM, Android: 15.0
+[05-Dec-25 11:50:50 - INFO] - services.bot.Framework.helpers.logger - Version selection completed successfully for user 5354946036
