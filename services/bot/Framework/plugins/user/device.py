@@ -60,9 +60,10 @@ async def handle_text_input(bot: Client, message: Message):
                 suggestion_text = f"\n\n💡 Did you mean one of these?\n" + "\n".join([f"• `{c}`" for c in similar[:5]])
 
             await message.reply_text(
-                f"❌ Invalid codename: `{codename}`\n\n"
-                f"Attempt {retry_count}/3 - Please try again.{suggestion_text}\n\n"
-                f"You can also search by device name (e.g., 'Redmi Note 11').",
+                f"❌ **Invalid codename:** `{codename}`\n\n"
+                f"Attempt {retry_count}/3\n"
+                f"{suggestion_text}\n\n"
+                f"💡 _Tip: You can search by device name (e.g., 'Redmi Note 11')._",
                 quote=True
             )
             return
@@ -110,7 +111,7 @@ async def handle_text_input(bot: Client, message: Message):
         if len(miui_roms) > 10:
             buttons.append([InlineKeyboardButton(f"📋 Show All ({len(miui_roms)} versions)", callback_data="ver_showall")])
 
-        buttons.append([InlineKeyboardButton("❓ Can't find your version?", callback_data="ver_manual")])
+        buttons.append([InlineKeyboardButton("❓ Can't find your version? Enter Manually", callback_data="ver_manual")])
         buttons.append([InlineKeyboardButton("🔄 Reselect Codename", callback_data="reselect_codename")])
         await message.reply_text(
             f"✅ Device found: **{device_info['name']}** (`{codename}`)\n\n"
@@ -182,16 +183,16 @@ async def handle_text_input(bot: Client, message: Message):
 
             # Build feature selection buttons based on Android version
             buttons = [
-                [InlineKeyboardButton("☐ Disable Signature Verification", callback_data="feature_signature")]
+                [InlineKeyboardButton("❌ Signature Verification Bypass", callback_data="feature_signature")]
             ]
 
             # Only show Android 15+ features if version is 15 or higher
             if android_int >= 15:
-                buttons.append([InlineKeyboardButton("☐ CN Notification Fix", callback_data="feature_cn_notif")])
-                buttons.append([InlineKeyboardButton("☐ Disable Secure Flag", callback_data="feature_secure_flag")])
-                buttons.append([InlineKeyboardButton("☐ Kaorios Toolbox (Play Integrity)", callback_data="feature_kaorios")])
+                buttons.append([InlineKeyboardButton("❌ CN Notification Fix", callback_data="feature_cn_notif")])
+                buttons.append([InlineKeyboardButton("❌ Disable Secure Flag", callback_data="feature_secure_flag")])
+                buttons.append([InlineKeyboardButton("❌ Kaorios Toolbox", callback_data="feature_kaorios")])
 
-            buttons.append([InlineKeyboardButton("Continue with selected features", callback_data="features_done")])
+            buttons.append([InlineKeyboardButton("🚀 Continue with selected features", callback_data="features_done")])
 
             await message.reply_text(
                 f"✅ **Manual version configured!**\n\n"
@@ -262,16 +263,16 @@ async def handle_text_input(bot: Client, message: Message):
 
             # Build feature selection buttons based on Android version
             buttons = [
-                [InlineKeyboardButton("☐ Disable Signature Verification", callback_data="feature_signature")]
+                [InlineKeyboardButton("❌ Signature Verification Bypass", callback_data="feature_signature")]
             ]
 
             # Only show Android 15+ features if version is 15 or higher
             if android_int >= 15:
-                buttons.append([InlineKeyboardButton("☐ CN Notification Fix", callback_data="feature_cn_notif")])
-                buttons.append([InlineKeyboardButton("☐ Disable Secure Flag", callback_data="feature_secure_flag")])
-                buttons.append([InlineKeyboardButton("☐ Kaorios Toolbox", callback_data="feature_kaorios")])
+                buttons.append([InlineKeyboardButton("❌ CN Notification Fix", callback_data="feature_cn_notif")])
+                buttons.append([InlineKeyboardButton("❌ Disable Secure Flag", callback_data="feature_secure_flag")])
+                buttons.append([InlineKeyboardButton("❌ Kaorios Toolbox", callback_data="feature_kaorios")])
 
-            buttons.append([InlineKeyboardButton("Continue with selected features", callback_data="features_done")])
+            buttons.append([InlineKeyboardButton("🚀 Continue with selected features", callback_data="features_done")])
 
             await message.reply_text(
                 f"✅ **Version selected!**\n\n"
@@ -319,15 +320,15 @@ async def handle_text_input(bot: Client, message: Message):
                 user_states[user_id]["state"] = STATE_WAITING_FOR_FEATURES
 
                 buttons = [
-                    [InlineKeyboardButton("☐ Disable Signature Verification", callback_data="feature_signature")]
+                    [InlineKeyboardButton("❌ Signature Verification Bypass", callback_data="feature_signature")]
                 ]
 
                 if android_int >= 15:
-                    buttons.append([InlineKeyboardButton("☐ CN Notification Fix", callback_data="feature_cn_notif")])
-                    buttons.append([InlineKeyboardButton("☐ Disable Secure Flag", callback_data="feature_secure_flag")])
-                    buttons.append([InlineKeyboardButton("☐ Kaorios Toolbox ", callback_data="feature_kaorios")])
+                    buttons.append([InlineKeyboardButton("❌ CN Notification Fix", callback_data="feature_cn_notif")])
+                    buttons.append([InlineKeyboardButton("❌ Disable Secure Flag", callback_data="feature_secure_flag")])
+                    buttons.append([InlineKeyboardButton("❌ Kaorios Toolbox", callback_data="feature_kaorios")])
 
-                buttons.append([InlineKeyboardButton("Continue with selected features", callback_data="features_done")])
+                buttons.append([InlineKeyboardButton("🚀 Continue with selected features", callback_data="features_done")])
 
                 await message.reply_text(
                     f"✅ **Version selected!**\n\n"
@@ -506,16 +507,16 @@ async def version_selection_handler(bot: Client, query: CallbackQuery):
         # Build feature selection buttons based on Android version
         android_int = int(float(android_version))
         buttons = [
-            [InlineKeyboardButton("☐ Disable Signature Verification", callback_data="feature_signature")]
+            [InlineKeyboardButton("❌ Signature Verification Bypass", callback_data="feature_signature")]
         ]
 
         # Only show Android 15+ features if version is 15 or higher
         if android_int >= 15:
-            buttons.append([InlineKeyboardButton("☐ CN Notification Fix", callback_data="feature_cn_notif")])
-            buttons.append([InlineKeyboardButton("☐ Disable Secure Flag", callback_data="feature_secure_flag")])
-            buttons.append([InlineKeyboardButton("☐ Kaorios Toolbox", callback_data="feature_kaorios")])
+            buttons.append([InlineKeyboardButton("❌ CN Notification Fix", callback_data="feature_cn_notif")])
+            buttons.append([InlineKeyboardButton("❌ Disable Secure Flag", callback_data="feature_secure_flag")])
+            buttons.append([InlineKeyboardButton("❌ Kaorios Toolbox", callback_data="feature_kaorios")])
 
-        buttons.append([InlineKeyboardButton("Continue with selected features", callback_data="features_done")])
+        buttons.append([InlineKeyboardButton("🚀 Continue with selected features", callback_data="features_done")])
 
         await query.message.edit_text(
             f"✅ **Version selected!**\n\n"

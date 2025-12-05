@@ -17,7 +17,9 @@ async def start_command_handler(bot: Client, message: Message):
             disable_web_page_preview=True,
             quote=True,
             reply_markup=InlineKeyboardMarkup([
-                [BUTTON1, BUTTON2]
+                [BUTTON_START_PATCH],
+                [BUTTON1, BUTTON2],
+                [BUTTON_SUPPORT]
             ])
         )
     except Exception as e:

@@ -2,11 +2,22 @@ from pyrogram.types import InlineKeyboardButton
 
 
 
-START_TEXT = """Hello {},
-Ready to patch some frameworks?\nSend `/start_patch` to begin the patching process.
+START_TEXT = """👋 **Hello {}, Welcome to Framework Patcher Bot!**
 
-The bot supports Android 13-16 with automated version detection based on device codename and ROM version."""
+I can help you patch your **HyperOS/MIUI** framework files to unlock cool features.
 
-BUTTON1 = InlineKeyboardButton(text="Jefino9488", url="https://t.me/Jefino9488")
-BUTTON2 = InlineKeyboardButton(text="Support Group", url="https://t.me/codes9488")
-BUTTON_SUPPORT = InlineKeyboardButton(text="Support me", url="https://buymeacoffee.com/jefino")
+🚀 **Features Supported:**
+• **Signature Verification Bypass** (Install unsigned apps)
+• **CN Notification Fix** (Fix notifications on CN ROMs)
+• **Disable Secure Flag** (Allow screenshots in secure apps)
+• **Kaorios Toolbox** (Play Integrity & Google Photos Unlimited)
+
+🤖 **Supported Android Versions:**
+• Android 13 - 16
+
+👇 **Click the button below or type** `/start_patch` **to begin!**"""
+
+BUTTON1 = InlineKeyboardButton(text="👨‍💻 Developer", url="https://t.me/Jefino9488")
+BUTTON2 = InlineKeyboardButton(text="👥 Support Group", url="https://t.me/codes9488")
+BUTTON_SUPPORT = InlineKeyboardButton(text="☕ Support me", url="https://buymeacoffee.com/jefino")
+BUTTON_START_PATCH = InlineKeyboardButton(text="🚀 Start Patching", callback_data="start_patch_cb")

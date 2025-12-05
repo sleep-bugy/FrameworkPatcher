@@ -5,6 +5,13 @@ from Framework import bot
 from Framework.helpers.state import *
 
 
+@bot.on_callback_query(filters.regex(r"^start_patch_cb$"))
+async def start_patch_callback(bot: Client, query: CallbackQuery):
+    """Handles the start patching button callback."""
+    await start_patch_command(bot, query.message)
+    await query.answer()
+
+
 @bot.on_message(filters.private & filters.command("start_patch"))
 async def start_patch_command(bot: Client, message: Message):
     """Initiates the framework patching conversation."""
@@ -27,12 +34,19 @@ async def start_patch_command(bot: Client, message: Message):
             "enable_kaorios_toolbox": False
         }
     }
-    await message.reply_text(
-        "🚀 Let's start the framework patching process!\n\n"
-        "📱 Please enter your device codename (e.g., rothko, xaga, marble)\n\n"
-        "💡 Tip: You can also search by device name if you don't know the codename.",
-        quote=True,
+    
+    text = (
+        "🚀 **Let's start patching!**\n\n"
+        "First, I need to know your device details.\n\n"
+        "📱 **Please enter your device codename**\n"
+        "Examples: `rothko`, `xaga`, `marble`, `mondrian`\n\n"
+        "💡 _Tip: If you don't know the codename, you can type the device name (e.g., 'Redmi Note 12 Turbo')._"
     )
+    
+    if isinstance(message, Message):
+        await message.reply_text(text, quote=True)
+    else:
+        await message.edit_text(text)
 
 
 @bot.on_callback_query(filters.regex(r"^reselect_codename$"))
@@ -84,7 +98,7 @@ async def feature_toggle_handler(bot: Client, query: CallbackQuery):
 
     buttons = [
         [InlineKeyboardButton(
-            f"{'✓' if features['enable_signature_bypass'] else '☐'} Disable Signature Verification",
+            f"{'✅' if features['enable_signature_bypass'] else '❌'} Signature Verification Bypass",
             callback_data="feature_signature"
         )]
     ]
@@ -92,19 +106,19 @@ async def feature_toggle_handler(bot: Client, query: CallbackQuery):
     # Only show Android 15+ features if Android version is 15 or higher
     if android_int >= 15:
         buttons.append([InlineKeyboardButton(
-            f"{'✓' if features['enable_cn_notification_fix'] else '☐'} CN Notification Fix",
+            f"{'✅' if features['enable_cn_notification_fix'] else '❌'} CN Notification Fix",
             callback_data="feature_cn_notif"
         )])
         buttons.append([InlineKeyboardButton(
-            f"{'✓' if features['enable_disable_secure_flag'] else '☐'} Disable Secure Flag",
+            f"{'✅' if features['enable_disable_secure_flag'] else '❌'} Disable Secure Flag",
             callback_data="feature_secure_flag"
         )])
         buttons.append([InlineKeyboardButton(
-            f"{'✓' if features['enable_kaorios_toolbox'] else '☐'} Kaorios Toolbox",
+            f"{'✅' if features['enable_kaorios_toolbox'] else '❌'} Kaorios Toolbox",
             callback_data="feature_kaorios"
         )])
 
-    buttons.append([InlineKeyboardButton("Continue with selected features", callback_data="features_done")])
+    buttons.append([InlineKeyboardButton("🚀 Continue with selected features", callback_data="features_done")])
 
     await query.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
     await query.answer(f"Feature {'enabled' if user_states[user_id]['features'][feature_key] else 'disabled'}")
