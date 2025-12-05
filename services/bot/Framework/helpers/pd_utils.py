@@ -1,10 +1,10 @@
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
-from Framework.helpers.logger import LOGGER
-from Framework.helpers.functions import format_size, format_date
-from Framework.helpers.buttons import *
-from Framework.helpers.state import *
-from Framework.helpers.provider import *
+from services.bot.Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.functions import format_size, format_date
+from services.bot.Framework.helpers.buttons import *
+from services.bot.Framework.helpers.state import *
+from services.bot.Framework.helpers.provider import *
 import httpx
 
 

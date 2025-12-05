@@ -1,5 +1,5 @@
-from Framework.helpers.logger import LOGGER
-from Framework.helpers.shell import run_shell_cmd
+from services.bot.Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.shell import run_shell_cmd
 import os
 
 async def backup_current_state():

@@ -8,7 +8,7 @@ from typing import List, Dict, Any, Optional
 import httpx
 import yaml
 
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.logger import LOGGER
 
 # URLs for data sources
 DEVICES_URL = "https://raw.githubusercontent.com/XiaomiFirmwareUpdater/xiaomi_devices/master/devices.json"

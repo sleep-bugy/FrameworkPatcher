@@ -5,9 +5,9 @@ from datetime import datetime
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Framework import bot
-from Framework import BotStartTime
-from Framework.helpers.functions import get_readable_time
+from services.bot.Framework import bot
+from services.bot.Framework import BotStartTime
+from services.bot.Framework.helpers.functions import get_readable_time
 
 @bot.on_message(filters.command(["ping", "alive"]))
 async def ping(_, message: Message):

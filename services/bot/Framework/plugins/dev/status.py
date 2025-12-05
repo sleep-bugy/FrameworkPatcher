@@ -1,12 +1,12 @@
 from pyrogram import filters, enums, Client
 from pyrogram.types import Message
 
-from Framework import bot
-from Framework.helpers.state import *
-from Framework.helpers.decorators import owner
-from Framework.helpers.utils import *
-from Framework.helpers.processes import *
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework import bot
+from services.bot.Framework.helpers.state import *
+from services.bot.Framework.helpers.decorators import owner
+from services.bot.Framework.helpers.utils import *
+from services.bot.Framework.helpers.processes import *
+from services.bot.Framework.helpers.logger import LOGGER
 
 @bot.on_message(filters.command("status"))
 @owner

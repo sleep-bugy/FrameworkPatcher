@@ -1,10 +1,10 @@
 from pyrogram import idle
 
-from Framework import bot, loop
-from Framework.helpers.maintenance import notify_users_maintenance
-from Framework.helpers.provider import *
-from Framework.helpers.provider import initialize_data
-from Framework.plugins.dev.updater import restart_notification
+from services.bot.Framework import bot, loop
+from services.bot.Framework.helpers.maintenance import notify_users_maintenance
+from services.bot.Framework.helpers.provider import *
+from services.bot.Framework.helpers.provider import initialize_data
+from services.bot.Framework.plugins.dev.updater import restart_notification
 
 
 async def main():

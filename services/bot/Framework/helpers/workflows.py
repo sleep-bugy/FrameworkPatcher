@@ -2,7 +2,7 @@ import asyncio
 
 import httpx
 
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.logger import LOGGER
 from config import *
 
 
@@ -19,7 +19,7 @@ def _select_workflow_id(api_level: str) -> str:
     if api_str in {"13", "14", "15", "16"} or api_str.replace(".", "", 1).isdigit() and int(float(api_str)) in {13, 14,
                                                                                                                 15, 16}:
         try:
-            from Framework.helpers.provider import android_version_to_api_level
+            from services.bot.Framework.helpers.provider import android_version_to_api_level
             api_str = android_version_to_api_level(api_str)
         except Exception:
             # Fallback to best effort mapping

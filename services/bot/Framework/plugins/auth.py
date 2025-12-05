@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.logger import LOGGER
 import config
 
 @Client.on_message(filters.private, group=-1)

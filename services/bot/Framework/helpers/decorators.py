@@ -1,7 +1,7 @@
 from functools import wraps
 from typing import Union
 from pyrogram.types import Message, CallbackQuery
-from Framework.helpers.owner_id import OWNER_ID
+from services.bot.Framework.helpers.owner_id import OWNER_ID
 
 def owner(func):
     @wraps(func)

@@ -2,10 +2,10 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from Framework import bot
-from Framework.helpers.logger import LOGGER
-from Framework.helpers.buttons import *
-from Framework.helpers.utils import ensure_connection
+from services.bot.Framework import bot
+from services.bot.Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.buttons import *
+from services.bot.Framework.helpers.utils import ensure_connection
 
 @bot.on_message(filters.private & filters.command("start"))
 async def start_command_handler(bot: Client, message: Message):

@@ -1,6 +1,6 @@
-from Framework.helpers.logger import LOGGER
-from Framework.helpers.state import *
-from Framework import bot
+from services.bot.Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.state import *
+from services.bot.Framework import bot
 
 async def notify_users_maintenance():
     """Notify users about maintenance."""

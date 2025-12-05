@@ -5,10 +5,10 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 import config
-from Framework import bot
-from Framework.helpers.decorators import owner
-from Framework.helpers.logger import LOGGER
-from Framework.helpers.state import *
+from services.bot.Framework import bot
+from services.bot.Framework.helpers.decorators import owner
+from services.bot.Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.state import *
 
 
 @bot.on_message(filters.command("pdup") & filters.group & filters.reply)
@@ -161,9 +161,9 @@ async def handle_media_upload(bot: Client, message: Message):
 
         if received_count == 3:
             # All files received, now trigger the workflow
-            from Framework.helpers.workflows import trigger_github_workflow_async
+            from services.bot.Framework.helpers.workflows import trigger_github_workflow_async
             from datetime import datetime
-            from Framework.helpers.state import user_rate_limits
+            from services.bot.Framework.helpers.state import user_rate_limits
 
             await message.reply_text(
                 "✅ All 3 files received and uploaded!\n\n"

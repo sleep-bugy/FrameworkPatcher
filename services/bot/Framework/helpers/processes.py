@@ -1,5 +1,5 @@
 import psutil
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.logger import LOGGER
 
 async def get_bot_processes():
     """Get all bot processes running."""

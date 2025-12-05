@@ -8,9 +8,9 @@ import uuid
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-from Framework import bot
-from Framework.helpers.decorators import owner
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework import bot
+from services.bot.Framework.helpers.decorators import owner
+from services.bot.Framework.helpers.logger import LOGGER
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
 RESTART_PREFIX = os.path.join(PROJECT_ROOT, ".restartmsg.")

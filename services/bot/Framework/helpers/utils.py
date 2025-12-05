@@ -1,8 +1,8 @@
 import asyncio
 from pyrogram.errors import FloodWait
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.logger import LOGGER
 
-from Framework import bot
+from services.bot.Framework import bot
 
 async def check_connection_health() -> bool:
     """Check if the bot connection is healthy."""

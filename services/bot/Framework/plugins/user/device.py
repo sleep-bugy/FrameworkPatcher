@@ -1,10 +1,10 @@
 from pyrogram import filters, Client
 from pyrogram.types import CallbackQuery
 
-from Framework import bot
-from Framework.helpers.pd_utils import *
-from Framework.helpers.provider import *
-from Framework.helpers.workflows import *
+from services.bot.Framework import bot
+from services.bot.Framework.helpers.pd_utils import *
+from services.bot.Framework.helpers.provider import *
+from services.bot.Framework.helpers.workflows import *
 
 
 def get_id(text: str) -> str | None:

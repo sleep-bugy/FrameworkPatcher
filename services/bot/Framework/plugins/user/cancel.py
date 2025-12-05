@@ -1,8 +1,8 @@
 from pyrogram import filters, Client
 from pyrogram.types import Message
 
-from Framework.helpers.state import *
-from Framework import bot
+from services.bot.Framework.helpers.state import *
+from services.bot.Framework import bot
 
 @bot.on_message(filters.private & filters.command("cancel"))
 async def cancel_command(bot: Client, message: Message):

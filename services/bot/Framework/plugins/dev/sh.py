@@ -1,9 +1,9 @@
 from pyrogram import filters, Client, enums
 from pyrogram.types import Message
 
-from Framework.helpers.decorators import owner
-from Framework.helpers.shell import run_shell_cmd
-from Framework import bot
+from services.bot.Framework.helpers.decorators import owner
+from services.bot.Framework.helpers.shell import run_shell_cmd
+from services.bot.Framework import bot
 
 @bot.on_message(filters.private & filters.command("sh"))
 @owner
