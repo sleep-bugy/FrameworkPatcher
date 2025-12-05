@@ -4,7 +4,7 @@ import httpx
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-import config
+from services.bot import config
 from services.bot.Framework import bot
 from services.bot.Framework.helpers.decorators import owner
 from services.bot.Framework.helpers.logger import LOGGER

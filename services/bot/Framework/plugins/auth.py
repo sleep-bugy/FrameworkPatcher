@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from services.bot.Framework.helpers.logger import LOGGER
-import config
+from services.bot import config
 
 @Client.on_message(filters.private, group=-1)
 async def auth_check(client: Client, message: Message):

@@ -1,6 +1,6 @@
 import ast
 import os
-import config
+from services.bot import config
 
 def _parse_owner_ids() -> list[int]:    
     raw = os.getenv("OWNER_ID", str(config.OWNER_ID)).strip()

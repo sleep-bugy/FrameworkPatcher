@@ -3,7 +3,7 @@ import asyncio
 import httpx
 
 from services.bot.Framework.helpers.logger import LOGGER
-from config import *
+from services.bot.config import *
 
 
 def _select_workflow_id(api_level: str) -> str:
