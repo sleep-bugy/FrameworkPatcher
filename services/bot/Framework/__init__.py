@@ -3,7 +3,7 @@ import time
 
 from pyrogram import Client
 
-import config
+from services.bot import config
 from Framework.helpers.logger import LOGGER
 
 try:
