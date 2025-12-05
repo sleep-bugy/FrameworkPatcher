@@ -17,7 +17,7 @@ I can help you patch your **HyperOS/MIUI** framework files to unlock cool featur
 
 👇 **Click the button below or type** `/start_patch` **to begin!**"""
 
-BUTTON1 = InlineKeyboardButton(text="👨‍💻 Developer", url="https://t.me/Jefino9488")
-BUTTON2 = InlineKeyboardButton(text="👥 Support Group", url="https://t.me/codes9488")
-BUTTON_SUPPORT = InlineKeyboardButton(text="☕ Support me", url="https://buymeacoffee.com/jefino")
+BUTTON1 = InlineKeyboardButton(text="👨‍💻 Developer", url="https://t.me/manusiatukangtidur")
+BUTTON2 = InlineKeyboardButton(text="👥 Support Group", url="https://t.me/SleepDiscussion")
+BUTTON_SUPPORT = InlineKeyboardButton(text="☕ Support me", url="https://graph.org/Developer-Support-with-Coffee-05-19")
 BUTTON_START_PATCH = InlineKeyboardButton(text="🚀 Start Patching", callback_data="start_patch_cb")
