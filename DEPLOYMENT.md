@@ -79,7 +79,8 @@ The bot needs to run on a server that stays online 24/7.
     Fill in:
     *   `API_ID`, `API_HASH` (from my.telegram.org)
     *   `BOT_TOKEN` (from @BotFather)
-    *   `ALLOWED_USER_IDS` (Your Telegram ID)
+    *   `OWNER_ID` (Your Telegram ID)
+    *   `ALLOWED_USER_IDS` (Your Telegram ID, same as OWNER_ID)
 
 5.  **Run the Bot:**
     *   **Method A: Direct (for testing)**
