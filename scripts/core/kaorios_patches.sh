@@ -117,53 +117,21 @@ if not target_file.exists():
 lines = target_file.read_text().splitlines()
 modified = False
 
-# 1. Add Field: .field private final mContext:Landroid/content/Context;
-field_line = ".field private final mContext:Landroid/content/Context;"
-if not any(field_line in line for line in lines):
-    # Insert after class definition or before first method
-    for i, line in enumerate(lines):
-        if line.startswith(".source"):
-            lines.insert(i + 1, "")
-            lines.insert(i + 2, field_line)
-            print("✓ Added mContext field")
-            modified = True
+# Find the existing mContext field signature
+mcontext_field = None
+for line in lines:
+    if '.field' in line and 'mContext:' in line:
+        # Extract the full field signature, e.g., mContext:Landroid/app/ContextImpl;
+        match = re.search(r'mContext:[\w/$]+;', line)
+        if match:
+            mcontext_field = match.group(0)
+            print(f"✓ Found existing mContext field: {mcontext_field}")
             break
 
-# 2. Add Constructor: ApplicationPackageManager(Context)
-constructor_code = [
-    ".method public constructor <init>(Landroid/content/Context;)V",
-    "    .registers 2",
-    "",
-    "    invoke-direct {p0}, Ljava/lang/Object;-><init>()V",
-    "",
-    "    iput-object p1, p0, Landroid/app/ApplicationPackageManager;->mContext:Landroid/content/Context;",
-    "",
-    "    return-void",
-    ".end method"
-]
-
-# Check if constructor already exists
-constructor_exists = False
-for i, line in enumerate(lines):
-    if ".method public constructor <init>(Landroid/content/Context;)V" in line:
-        constructor_exists = True
-        break
-
-if not constructor_exists:
-    # Insert before the first method or at a reasonable place
-    # Let's find the default constructor or just insert at the beginning of methods
-    insert_idx = -1
-    for i, line in enumerate(lines):
-        if line.startswith(".method"):
-            insert_idx = i
-            break
-    
-    if insert_idx != -1:
-        lines.insert(insert_idx, "")
-        for line in reversed(constructor_code):
-            lines.insert(insert_idx, line)
-        print("✓ Added ApplicationPackageManager(Context) constructor")
-        modified = True
+if not mcontext_field:
+    # Fallback if not found (unlikely for ApplicationPackageManager)
+    print("⚠ Could not find existing mContext field, assuming Landroid/content/Context;")
+    mcontext_field = "mContext:Landroid/content/Context;"
 
 # 3. Patch hasSystemFeature(String, int)
 kaorios_block = r"""
@@ -171,7 +139,7 @@ kaorios_block = r"""
 
     move-result-object v0
 
-    iget-object v1, p0, Landroid/app/ApplicationPackageManager;->mContext:Landroid/content/Context;
+    iget-object v1, p0, Landroid/app/ApplicationPackageManager;->M_CONTEXT_PLACEHOLDER
 
     invoke-static {}, Lcom/android/internal/util/kaorios/KaoriFeaturesUtils;->getAppLog()Ljava/lang/String;
 
@@ -375,7 +343,7 @@ kaorios_block = r"""
     goto/16 :goto_14d
 
     :cond_dc
-    iget-object p0, p0, Landroid/app/ApplicationPackageManager;->mContext:Landroid/content/Context;
+    iget-object p0, p0, Landroid/app/ApplicationPackageManager;->M_CONTEXT_PLACEHOLDER
 
     invoke-static {}, Lcom/android/internal/util/kaorios/KaoriFeaturesUtils;->getSystemLog()Ljava/lang/String;
 
@@ -502,7 +470,7 @@ kaorios_block = r"""
     return v3
 
     :cond_14e
-""".splitlines()
+""".replace("M_CONTEXT_PLACEHOLDER", mcontext_field).splitlines()
 
 # Find hasSystemFeature(String, int) method
 method_start = None
