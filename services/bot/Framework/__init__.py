@@ -4,7 +4,7 @@ import time
 from pyrogram import Client
 
 from services.bot import config
-from Framework.helpers.logger import LOGGER
+from services.bot.Framework.helpers.logger import LOGGER
 
 try:
     import uvloop
@@ -22,7 +22,7 @@ except RuntimeError:
 LOGGER.info("Starting Framework Patcher Bot...")
 BotStartTime = time.time()
 
-plugins = dict(root="Framework.plugins")
+plugins = dict(root="services.bot.Framework.plugins")
 
 class CustomClient(Client):
     async def start(self):
