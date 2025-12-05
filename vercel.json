@@ -1,31 +1,20 @@
 {
-  "buildCommand": "echo 'No build needed - static site'",
-  "outputDirectory": "services/web",
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "http://dono-01.danbot.host:9422/:path*"
-    }
-  ],
-  "headers": [
+      "source": "/api/(.*)",
+      "destination": "/services/web/server.py"
+    },
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "X-Requested-With, Content-Type, Accept"
-        }
-      ]
+      "source": "/modules/(.*)",
+      "destination": "/services/web/modules/$1"
+    },
+    {
+      "source": "/styles.css",
+      "destination": "/services/web/styles.css"
+    },
+    {
+      "source": "/",
+      "destination": "/services/web/index.html"
     }
   ]
 }
