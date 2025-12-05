@@ -6,35 +6,58 @@
 }
 
 :root {
-    /* Catppuccin Dark Theme Colors */
-    --bg-primary: #1e1e2e;
-    --bg-secondary: #181825;
-    --bg-tertiary: #11111b;
-    --surface: #313244;
-    --surface-hover: #45475a;
-    --text-primary: #cdd6f4;
-    --text-secondary: #bac2de;
-    --text-muted: #a6adc8;
-    --accent: #cba6f7;
-    --accent-hover: #b4befe;
-    --success: #a6e3a1;
-    --warning: #f9e2af;
-    --error: #f38ba8;
-    --blue: #89b4fa;
-    --pink: #f5c2e7;
-    --mauve: #cba6f7;
-    --lavender: #b4befe;
-    --sapphire: #74c7ec;
-    --sky: #89dceb;
-    --teal: #94e2d5;
-    --green: #a6e3a1;
-    --yellow: #f9e2af;
-    --peach: #fab387;
-    --maroon: #eba0ac;
-    --red: #f38ba8;
-    --flamingo: #f2cdcd;
-    --rosewater: #f5e0dc;
-    --border: #313244;
+    /* Neon Blue Dark Theme (Default) */
+    --bg-primary: #050a14;
+    --bg-secondary: #0a1120;
+    --bg-tertiary: #0f192b;
+    --surface: #132238;
+    --surface-hover: #1c3252;
+    --text-primary: #e0f2ff;
+    --text-secondary: #a0c4e8;
+    --text-muted: #5a7b9c;
+
+    /* Neon Accents */
+    --accent: #00f3ff;
+    --accent-hover: #00c8d4;
+    --accent-glow: rgba(0, 243, 255, 0.5);
+
+    /* Functional Colors */
+    --success: #00ff9d;
+    --warning: #ffd700;
+    --error: #ff0055;
+
+    /* Gradients */
+    --primary-gradient-start: #00f3ff;
+    --primary-gradient-end: #0066ff;
+
+    --border: #1c3252;
+    --shadow-color: rgba(0, 243, 255, 0.1);
+}
+
+/* Neon Blue Light Theme */
+body.light-mode {
+    --bg-primary: #f0f8ff;
+    --bg-secondary: #e1efff;
+    --bg-tertiary: #d0e6ff;
+    --surface: #ffffff;
+    --surface-hover: #f5faff;
+    --text-primary: #051a30;
+    --text-secondary: #2c4a6e;
+    --text-muted: #5a7b9c;
+
+    --accent: #007bff;
+    --accent-hover: #0056b3;
+    --accent-glow: rgba(0, 123, 255, 0.4);
+
+    --success: #00b871;
+    --warning: #e6c200;
+    --error: #d90048;
+
+    --primary-gradient-start: #007bff;
+    --primary-gradient-end: #004494;
+
+    --border: #cce4ff;
+    --shadow-color: rgba(0, 123, 255, 0.15);
 }
 
 body {
@@ -61,6 +84,36 @@ body {
 .header-content {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 2px solid var(--surface);
+    color: var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: translateY(-50%) rotate(15deg);
 }
 
 .logo {
@@ -80,10 +133,11 @@ body {
     font-size: 3rem;
     font-weight: 700;
     margin: 0;
-    background: linear-gradient(135deg, var(--lavender) 0%, var(--pink) 100%);
+    background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 0 20px var(--accent-glow);
 }
 
 .subtitle {
@@ -96,10 +150,11 @@ body {
 .main-content {
     background: var(--bg-primary);
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px var(--shadow-color), inset 0 0 20px rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
     overflow: hidden;
-    border: 1px solid var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
 }
 
 /* Version Selector */
@@ -214,7 +269,7 @@ body {
 .form-group input:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(203, 166, 247, 0.1);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .form-group input::placeholder {
@@ -409,9 +464,11 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--mauve) 0%, var(--blue) 100%);
-    color: var(--bg-primary);
+    background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+    color: #fff;
     font-weight: 600;
+    box-shadow: 0 0 20px var(--accent-glow);
+    border: 1px solid var(--accent);
 }
 
 .btn-primary:hover {

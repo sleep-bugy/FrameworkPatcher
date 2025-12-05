@@ -1,6 +1,6 @@
 // services/web/modules/main.js
-import {androidVersionToApiLevel, extractBaseCodename} from './utils.js';
-import {fetchDevices, fetchDeviceSoftware} from './api.js';
+import { androidVersionToApiLevel, extractBaseCodename } from './utils.js';
+import { fetchDevices, fetchDeviceSoftware } from './api.js';
 import {
     clearForm,
     closeModal,
@@ -26,8 +26,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initializeForms();
     setupEventListeners();
+    setupThemeToggle();
     loadDevicesData();
 });
+
+// Theme Toggle Logic
+function setupThemeToggle() {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const icon = themeToggleBtn.querySelector('i');
+
+    // Check saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+
+        // Update icon
+        if (isLight) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'light');
+        } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
 
 // Expose global functions for HTML onclick handlers
 window.clearForm = clearForm;
@@ -48,7 +76,7 @@ async function loadDeviceVersions(codename, versionSelect, hiddenVersionInput) {
         const baseCodename = extractBaseCodename(codename);
 
         if (devicesWithNoVersions.has(codename)) {
-            populateVersionDropdown(versionSelect, hiddenVersionInput, {firmware_versions: [], miui_roms: []});
+            populateVersionDropdown(versionSelect, hiddenVersionInput, { firmware_versions: [], miui_roms: [] });
             return;
         }
 
@@ -163,7 +191,7 @@ function setupEventListeners() {
             e.preventDefault();
 
             const isManualMode = document.getElementById('manual-mode-toggle')?.checked;
-            const {detectedAndroidVersion, detectedApiLevel} = getDetectedInfo();
+            const { detectedAndroidVersion, detectedApiLevel } = getDetectedInfo();
 
             // Validation Logic
             if (!detectedAndroidVersion || !detectedApiLevel) {
