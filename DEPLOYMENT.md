@@ -72,10 +72,9 @@ The bot needs to run on a server that stays online 24/7.
     ```
 
 4.  **Configure Environment:**
-    Create a `.env` file in `services/bot/.env` (or export variables in your shell):
+    Create a `.env` file in the **root directory** (`FrameworkPatcher/.env`):
     ```bash
-    cp services/bot/.env.example services/bot/.env
-    nano services/bot/.env
+    nano .env
     ```
     Fill in:
     *   `API_ID`, `API_HASH` (from my.telegram.org)
