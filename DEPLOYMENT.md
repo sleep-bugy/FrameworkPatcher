@@ -110,6 +110,31 @@ The bot needs to run on a server that stays online 24/7.
 
 ---
 
+## Part 3: Free Hosting Options (For Bot)
+
+If you don't want to pay for a VPS, here are free alternatives:
+
+### Option A: Your Own PC (Easiest)
+You can simply run the bot on your own laptop/PC while you are using it.
+*   **Pros:** Totally free, easy to set up.
+*   **Cons:** Bot goes offline when you turn off your PC.
+
+### Option B: Termux (Android Phone)
+If you have an spare Android phone, you can run the bot 24/7 on it.
+1.  Install **Termux** from F-Droid.
+2.  Run: `pkg install python git openssl`
+3.  Clone repo and install requirements (same as VPS steps).
+4.  Run: `python3 -m services.bot.Framework`
+*   **Pros:** Free, low power usage.
+*   **Cons:** Needs a phone connected to WiFi 24/7.
+
+### Option C: Free Cloud Tiers
+*   **Oracle Cloud (Always Free):** Very generous, but hard to register.
+*   **Google Cloud (Free Tier):** `e2-micro` instance is free in some regions.
+*   **PythonAnywhere:** Has a free tier, but might block some API connections.
+
+---
+
 ## FAQ
 
 **Q: Do I need a database?**
