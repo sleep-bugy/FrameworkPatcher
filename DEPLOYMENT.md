@@ -55,7 +55,7 @@ The bot needs to run on a server that stays online 24/7.
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+    git clone https://github.com/sleep-bugy/FrameworkPatcher.git
     cd FrameworkPatcher
     ```
 

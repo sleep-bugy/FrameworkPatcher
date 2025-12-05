@@ -15,7 +15,7 @@ This script fetches the latest release of [Kaorios Toolbox](https://github.com/W
 ### Basic Update
 
 ```bash
-cd /path/to/FrameworkPatcherV2
+cd /path/to/FrameworkPatcher
 ./scripts/update_kaorios.sh
 ```
 
@@ -270,7 +270,7 @@ The script doesn't maintain a changelog, but backups allow you to:
 
 ```bash
 # Check for updates daily at 3 AM
-0 3 * * * cd /path/to/FrameworkPatcherV2 && ./scripts/update_kaorios.sh
+0 3 * * * cd /path/to/FrameworkPatcher && ./scripts/update_kaorios.sh
 ```
 
 ### Pre-Patch Hook
@@ -289,7 +289,7 @@ echo "Running patcher..."
 ## Support
 
 - **Kaorios Issues**: [Kaorios Toolbox Repo](https://github.com/Wuang26/Kaorios-Toolbox/issues)
-- **Updater Issues**: [Framework Patcher V2 Issues](https://github.com/Jefino9488/FrameworkPatcherV2/issues)
+- **Updater Issues**: [Framework Patcher V2 Issues](https://github.com/sleep-bugy/FrameworkPatcher/issues)
 - **Telegram**: @Jefino9488
 -
 ## Changelog

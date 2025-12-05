@@ -56,7 +56,7 @@ folder.
 
 1. Push changes to the `web/` folder
 2. The GitHub Actions workflow will automatically deploy to Pages
-3. The site will be available at: `https://jefino9488.github.io/FrameworkPatcherV2/`
+3. The site will be available at: `https://sleep-bugy.github.io/FrameworkPatcher/`
 
 ## Technical Details
 
@@ -113,5 +113,5 @@ Both workflows now:
 ## Support
 
 For issues or questions:
-- GitHub Issues: [FrameworkPatcherV2 Issues](https://github.com/jefino9488/FrameworkPatcherV2/issues)
+- GitHub Issues: [FrameworkPatcher Issues](https://github.com/sleep-bugy/FrameworkPatcher/issues)
 - Support: [Buy Me a Coffee](https://buymeacoffee.com/jefino)

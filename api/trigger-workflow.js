@@ -6,12 +6,12 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    
+
     // Handle preflight requests
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
-    
+
     // Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     try {
         console.log('API route called with method:', req.method);
         console.log('Request body:', req.body);
-        
+
         const { version, inputs } = req.body;
 
         // Validate required fields
@@ -48,8 +48,8 @@ export default async function handler(req, res) {
         };
 
         const workflowFile = workflowFiles[version];
-        const owner = 'jefino9488';
-        const repo = 'FrameworkPatcherV2';
+        const owner = 'sleep-bugy';
+        const repo = 'FrameworkPatcher';
 
         // Prepare workflow inputs
         const workflowInputs = {
@@ -89,15 +89,15 @@ export default async function handler(req, res) {
 
         if (response.status === 204) {
             console.log('Workflow triggered successfully');
-            return res.status(200).json({ 
-                success: true, 
+            return res.status(200).json({
+                success: true,
                 message: 'Workflow triggered successfully',
                 workflowUrl: `https://github.com/${owner}/${repo}/actions/workflows/${workflowFile}`
             });
         } else {
             const errorText = await response.text();
             console.error('GitHub API error:', response.status, errorText);
-            
+
             // Handle specific GitHub API errors
             if (response.status === 401) {
                 return res.status(401).json({ error: 'Invalid GitHub token' });
@@ -106,7 +106,7 @@ export default async function handler(req, res) {
             } else if (response.status === 404) {
                 return res.status(404).json({ error: 'Workflow not found' });
             } else {
-                return res.status(response.status).json({ 
+                return res.status(response.status).json({
                     error: `GitHub API error: ${response.status}`,
                     details: errorText
                 });
@@ -115,9 +115,9 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error('API route error:', error);
-        return res.status(500).json({ 
+        return res.status(500).json({
             error: 'Internal server error',
-            details: error.message 
+            details: error.message
         });
     }
 }

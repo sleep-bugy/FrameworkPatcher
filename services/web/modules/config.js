@@ -1,7 +1,7 @@
 // services/web/modules/config.js
 export const CONFIG = {
-    githubOwner: 'jefino9488',
-    githubRepo: 'FrameworkPatcherV2',
+    githubOwner: 'sleep-bugy',
+    githubRepo: 'FrameworkPatcher',
     workflows: {
         android13: 'android13.yml',
         android14: 'android14.yml',
