@@ -18,7 +18,7 @@ def get_id(text: str) -> str | None:
         if len(id_part) > 5 and all(c.isalnum() or c == '-' for c in id_part):
             return id_part
         return None
-    elif "/" not in text and len(text) > 5:
+    elif "/" not in text and len(text) > 6 and all(c.isalnum() or c == '-' for c in text):
         return text
     return None
 

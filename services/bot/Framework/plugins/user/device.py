@@ -7,19 +7,7 @@ from services.bot.Framework.helpers.provider import *
 from services.bot.Framework.helpers.workflows import *
 
 
-def get_id(text: str) -> str | None:
-    """Extracts PixelDrain ID from a URL or raw ID."""
-    if text.startswith("http"):
-        if text.endswith("/"):
-            id_part = text.split("/")[-2]
-        else:
-            id_part = text.split("/")[-1]
-        if len(id_part) > 5 and all(c.isalnum() or c == '-' for c in id_part):
-            return id_part
-        return None
-    elif "/" not in text and len(text) > 5:
-        return text
-    return None
+
 
 @bot.on_message(
     filters.private
