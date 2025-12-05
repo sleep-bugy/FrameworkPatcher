@@ -292,14 +292,21 @@ async def upload_file_stream(file_path: str, pixeldrain_api_key: str) -> tuple:
 
                     logs.append(f"Uploading {os.path.basename(file_path)} ({file_size} bytes) to PixelDrain...")
                     
-                    response = await client.post(
-                        "https://pixeldrain.com/api/file",
-                        files=files,
-                        auth=("", pixeldrain_api_key),
-                        headers={
+                    # Prepare request arguments
+                    request_kwargs = {
+                        "files": files,
+                        "headers": {
                             "User-Agent": "FrameworkPatcherBot/1.0",
                             "Accept": "application/json"
                         }
+                    }
+                    
+                    if pixeldrain_api_key:
+                        request_kwargs["auth"] = ("", pixeldrain_api_key)
+                    
+                    response = await client.post(
+                        "https://pixeldrain.com/api/file",
+                        **request_kwargs
                     )
                     response.raise_for_status()
 
