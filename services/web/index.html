@@ -301,9 +301,27 @@
                 Close
             </button>
         </div>
-    </div>
+        <!-- Login Modal -->
+        <div class="modal active" id="login-modal"
+            style="display: flex; backdrop-filter: blur(15px); background: rgba(0,0,0,0.8);">
+            <div class="modal-content">
+                <div class="logo" style="margin-bottom: 1rem;">
+                    <i class="fas fa-lock" style="font-size: 3rem; color: var(--accent);"></i>
+                </div>
+                <h3>Access Required</h3>
+                <p>Please enter the access code to continue.</p>
+                <div class="form-group">
+                    <input type="password" id="access-code-input" placeholder="Enter Access Code"
+                        style="text-align: center;">
+                </div>
+                <p id="login-error" style="color: var(--error); display: none; margin-top: 0.5rem;"></p>
+                <button class="btn btn-primary" id="login-btn" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-unlock"></i> Unlock
+                </button>
+            </div>
+        </div>
 
-    <script src="modules/main.js" type="module"></script>
+        <script src="modules/main.js" type="module"></script>
 </body>
 
 </html>

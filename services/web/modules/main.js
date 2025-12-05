@@ -27,8 +27,83 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeForms();
     setupEventListeners();
     setupThemeToggle();
-    loadDevicesData();
+    setupLoginHandler();
+    checkAccess(); // Check access before loading data
 });
+
+// Access Control Logic
+async function checkAccess() {
+    const loginModal = document.getElementById('login-modal');
+    const savedCode = localStorage.getItem('access_code');
+
+    if (savedCode) {
+        try {
+            const response = await fetch('/verify-access', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: savedCode })
+            });
+
+            if (response.ok) {
+                loginModal.classList.remove('active');
+                loginModal.style.display = 'none';
+                loadDevicesData(); // Load data only after auth
+                return;
+            }
+        } catch (e) {
+            console.error("Auth check failed", e);
+        }
+        localStorage.removeItem('access_code');
+    }
+
+    // Show login modal
+    loginModal.classList.add('active');
+    loginModal.style.display = 'flex';
+}
+
+function setupLoginHandler() {
+    const loginBtn = document.getElementById('login-btn');
+    const codeInput = document.getElementById('access-code-input');
+    const errorMsg = document.getElementById('login-error');
+
+    async function attemptLogin() {
+        const code = codeInput.value;
+        if (!code) return;
+
+        loginBtn.disabled = true;
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+        errorMsg.style.display = 'none';
+
+        try {
+            const response = await fetch('/verify-access', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: code })
+            });
+
+            if (response.ok) {
+                localStorage.setItem('access_code', code);
+                document.getElementById('login-modal').classList.remove('active');
+                document.getElementById('login-modal').style.display = 'none';
+                loadDevicesData();
+            } else {
+                errorMsg.textContent = "Invalid Access Code";
+                errorMsg.style.display = 'block';
+            }
+        } catch (e) {
+            errorMsg.textContent = "Connection Error";
+            errorMsg.style.display = 'block';
+        } finally {
+            loginBtn.disabled = false;
+            loginBtn.innerHTML = '<i class="fas fa-unlock"></i> Unlock';
+        }
+    }
+
+    loginBtn.addEventListener('click', attemptLogin);
+    codeInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') attemptLogin();
+    });
+}
 
 // Theme Toggle Logic
 function setupThemeToggle() {

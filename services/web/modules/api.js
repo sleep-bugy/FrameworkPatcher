@@ -1,5 +1,5 @@
 // services/web/modules/api.js
-import {CONFIG} from './config.js';
+import { CONFIG } from './config.js';
 
 export async function fetchDevices() {
     try {
@@ -19,7 +19,7 @@ export async function fetchDeviceSoftware(codename) {
 
         if (!response.ok) {
             if (response.status === 404) {
-                return {firmware_versions: [], miui_roms: []}; // Return empty if not found
+                return { firmware_versions: [], miui_roms: [] }; // Return empty if not found
             }
             throw new Error('Failed to load versions');
         }
@@ -33,10 +33,19 @@ export async function fetchDeviceSoftware(codename) {
 
 export async function triggerWorkflow(version, inputs) {
     try {
+        const accessCode = localStorage.getItem('access_code');
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        if (accessCode) {
+            headers['Authorization'] = `Bearer ${accessCode}`;
+        }
+
         const response = await fetch('/api/trigger-workflow', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({version: version, inputs: inputs})
+            headers: headers,
+            body: JSON.stringify({ version: version, inputs: inputs })
         });
 
         const result = await response.json();

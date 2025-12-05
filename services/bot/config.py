@@ -19,3 +19,8 @@ WORKFLOW_ID_A14 = os.getenv("GITHUB_WORKFLOW_ID_A14")
 WORKFLOW_ID_A15 = os.getenv("GITHUB_WORKFLOW_ID_A15")
 WORKFLOW_ID_A16 = os.getenv("GITHUB_WORKFLOW_ID_A16")
 OWNER_ID = os.getenv("OWNER_ID", "")
+
+# Access Control
+ALLOWED_USER_IDS = [int(x) for x in os.getenv("ALLOWED_USER_IDS", "").split(",") if x.strip()]
+if OWNER_ID and int(OWNER_ID) not in ALLOWED_USER_IDS:
+    ALLOWED_USER_IDS.append(int(OWNER_ID))
